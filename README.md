@@ -3,9 +3,13 @@ Perl script written by Erick C. Castelli, Version 2.5
 
 Molecular Genetics and Bioinformatics Laboratory, School of Medicine, Unesp, Botucatu-SP, Brazil (www.castelli-lab.net). 
 
-When using the GATK ReadBackedPhasing to get haplotypes, some variable sites are straightforward phased, but others are not. These include indels, multi-allelic loci and variable sites not presenting another close heterozygous variable site. To get haplotypes including all the variable sites, this script uses the phased data from a GATK ReadBackedPhasing VCF file to create a fragmented .known file, that will be used with the PHASE algorithm to fill in the blanks. This known file is sometimes "fragmented", because GATK ReadBackedPhasing my phase some groups of variable sites, but not inform the phase between them.
+System: OSX, Linux, Unix (Windows not supported)
+
+When using the GATK ReadBackedPhasing to get haplotypes from NGS data, some variable sites are straightforward phased, but others are not. These include indels, multi-allelic loci and variable sites not presenting another close heterozygous variable site. To get haplotypes including all the variable sites, this script uses the phased data from a GATK ReadBackedPhasing VCF file to create a fragmented .known file, that will be used with the PHASE algorithm to fill in the blanks. This known file is sometimes "fragmented", because GATK ReadBackedPhasing my phase some groups of variable sites, but not inform the phase between them.
 
 Then, this script runs the PHASE algorithm considering each of this fragments and compares the PHASE results from multiple runs.
+
+This script is suitable to deal with a small set of variable sites (up to 1000), mainly because the PHASE algorithm is not suitable to large datasets. 
 
 # References
 
