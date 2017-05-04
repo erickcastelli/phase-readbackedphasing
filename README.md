@@ -1,7 +1,6 @@
 # phase-using-known-from-readbackedphasing.pl
-Perl script
-Written by Erick C. Castelli
-Version 2.5
+Perl script written by Erick C. Castelli, Version 2.5
+
 Molecular Genetics and Bioinformatics Laboratory, School of Medicine, Unesp, Botucatu-SP, Brazil (www.castelli-lab.net). 
 
 When using the GATK ReadBackedPhasing to get haplotypes, some variable sites are straightforward phased, but others are not. These include indels, multi-allelic loci and variable sites not presenting another close heterozygous variable site. To get haplotypes including all the variable sites, this script uses the phased data from a GATK ReadBackedPhasing VCF file to create a fragmented .known file, that will be used with the PHASE algorithm to fill in the blanks. This known file is sometimes "fragmented", because GATK ReadBackedPhasing my phase some groups of variable sites, but not inform the phase between them.
@@ -22,7 +21,7 @@ First, you need working copies of
 - the PHASE algorithm (download it at http://stephenslab.uchicago.edu/software.html#phase) 
 - VCFx software (download it at www.castelli-lab.net/apps/vcfx).
 
-To use the script, at your terminal, 'perl phase-using-known-from-readbackedphasing.pl'. This will display a list of options to set the script, as it follows:
+To use the script, at your terminal, type 'perl phase-using-known-from-readbackedphasing.pl'. This will display a list of options to set the script, as it follows:
 
 - -o [output_folder] (optional)
 - -t [number of threads] (optional, default: 4)
@@ -62,7 +61,7 @@ Option -d
 You may set additional PHASE parameters here, such as the segment size, mutation model, etc. E.g., -d '-l12. 
 
 
-# The script output
+# The script output folder
 
 At the output folder, you will find:
 - original.inp (this is the VCF file converted to the .INP file, by using VCFx phase)
