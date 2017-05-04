@@ -4,7 +4,9 @@ Written by Erick C. Castelli
 Version 2.5
 Molecular Genetics and Bioinformatics Laboratory, School of Medicine, Unesp, Botucatu-SP, Brazil (www.castelli-lab.net). 
 
-This script uses the phased data from a GATK ReadBackedPhasing VCF file to create a fragmented .known file to be used with the PHASE algorithm.  Then, it compares the PHASE results from multiple runs considering this fragmented .known file.
+When using the GATK ReadBackedPhasing to get haplotypes, some variable sites are straightforward phased, but others are not. These include indels, multi-allelic loci and variable sites not presenting another close heterozygous variable site. To get haplotypes including all the variable sites, this script uses the phased data from a GATK ReadBackedPhasing VCF file to create a fragmented .known file, that will be used with the PHASE algorithm to fill in the blanks. This known file is sometimes "fragmented", because GATK ReadBackedPhasing my phase some groups of variable sites, but not inform the phase between them.
+
+Then, this script runs the PHASE algorithm considering each of this fragments and compares the PHASE results from multiple runs.
 
 # References
 
@@ -66,9 +68,9 @@ At the output folder, you will find:
 - original.inp (this is the VCF file converted to the .INP file, by using VCFx phase)
 - original.known (this is the fragmented .known file, keeping the phase information from ReadBackePhasing). The presence of "|" means that we don't known the phase between these two fragments.
 - original.vcf (this is a copy of the VCF file)
-- known.@.known files (these files represent the .known that will be used by the PHASE algorithm in each @ run). There will be as @ as the maximum number of fragments observed in the original.known file.
+- known.@.known files (these files represent the .known that will be used by the PHASE algorithm in each @ run). There will be as much @ as the maximum number of fragments observed in the original.known file.
 - log_run_@.txt (the log file for each PHASE run)
-- phase_@.out (the PHASE outputs for each run)
+- phase_@.out (the PHASE outputs for each run. including .out_freqs, .out_pairs, and others)
 - haplotypes.checked.csv (This is the final file. In here you will find the haplotype pairs for each sample in each run, and the haplotype pairs when not considering the .known file, as well as the compatibility among runs. All pair of haplotypes marked with "ok" under compatibility indicate that, for that sample, the same pair of haplotypes were detected presenting the highest P-value for all runs. Thus, this pair is also compatible with ReadBackedPhasing information.)
 
 
