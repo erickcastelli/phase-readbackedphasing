@@ -60,12 +60,15 @@ Option -d
 You may set additional PHASE parameters here, such as the segment size, mutation model, etc. E.g., -d '-l12. 
 
 
-# The script outputs
+# The script output
 
 At the output folder, you will find:
 - original.inp (this is the VCF file converted to the .INP file, by using VCFx phase)
 - original.known (this is the fragmented .known file, keeping the phase information from ReadBackePhasing). The presence of "|" means that we don't known the phase between these two fragments.
 - original.vcf (this is a copy of the VCF file)
-- known.@.known files (these files represent the .known that will be used by the PHASE algorithm in each @ run). 
+- known.@.known files (these files represent the .known that will be used by the PHASE algorithm in each @ run). There will be as @ as the maximum number of fragments observed in the original.known file.
+- log_run_@.txt (the log file for each PHASE run)
+- phase_@.out (the PHASE outputs for each run)
+- haplotypes.checked.csv (This is the final file. In here you will find the haplotype pairs for each sample in each run, and the haplotype pairs when not considering the .known file, as well as the compatibility among runs. All pair of haplotypes marked with "ok" under compatibility indicate that, for that sample, the same pair of haplotypes were detected presenting the highest P-value for all runs. Thus, this pair is also compatible with ReadBackedPhasing information.)
 
 
