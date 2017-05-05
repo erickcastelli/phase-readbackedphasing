@@ -52,10 +52,10 @@ my $model = "";
 if ($opt_d ne "") {$model = $opt_d;}
 
 my $phase = $opt_b;
-if (! -e $phase) {$opt_b = ""; help();}
+if (! -e $phase) {$opt_b = ""; print "\nThe PHASE algorithm was not detected or not found"; help();}
 
 my $vcfx = $opt_x;
-if (! -e $vcfx) {$opt_x = ""; help();}
+if (! -e $vcfx) {$opt_x = ""; print "\nVCFx was not detected or not found"; help();}
 
 
 my $phase_para = "";
@@ -64,8 +64,7 @@ if ($opt_p ne "") {$phase_para = $opt_p;}
 $max_threads = $opt_t;
 if ($opt_t eq "") {$max_threads = 4;};
 
-if (! -e $opt_v) {help();}
-
+if (! -e $opt_v) {print "\nVCF file not found"; help();}
 
 
 
@@ -421,9 +420,9 @@ sub help {
 		if ($opt_x eq "") {print "not detected, mandatory)\n";} else {print "located at " . $opt_x . " )\n";}
 
 	print "    -p [iteraction, thinning and burning parameters] (e.g. -p '1000 1 100')\n";
-	print "    -d [other parameters] (such as -x '-N300 -l12 -d1')\n";
+	print "    -d [other parameters] (such as -d '-N300 -l12 -d1')\n";
 
-	print "    example: perl $0 -t 6 -i file.inp -v file.vcf\n";
+	print "    example: perl $0 -t 6 -v file.vcf -b /usr/local/bin/phase -x /usr/local/bin/vcfx\n";
 
 	exit;	
 
